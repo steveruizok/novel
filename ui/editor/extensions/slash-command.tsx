@@ -24,6 +24,8 @@ import LoadingCircle from "@/ui/shared/loading-circle";
 import { toast } from "sonner";
 import va from "@vercel/analytics";
 import Magic from "@/ui/shared/magic";
+import { TldrawIcon } from "./TldrawIcon";
+import { TldrawNode } from "./tldraw";
 
 interface CommandItemProps {
   title: string;
@@ -72,6 +74,20 @@ const getSuggestionItems = ({ query }: { query: string }) => {
       title: "Continue writing",
       description: "Use AI to expand your thoughts.",
       icon: <Magic className="w-7 text-black" />,
+    },
+    {
+      title: "tldraw",
+      description: "A very good whiteboard.",
+      icon: <TldrawIcon />,
+      command: ({ editor, range }: Command) => {
+        editor
+          .chain()
+          .focus()
+          .deleteRange(range)
+          .insertContent({ type: "tldraw", attrs: { level: 1 } })
+          .selectTextblockEnd()
+          .run();
+      },
     },
     {
       title: "Heading 1",

@@ -5,8 +5,11 @@ import TiptapImage from "@tiptap/extension-image";
 import Placeholder from "@tiptap/extension-placeholder";
 import SlashCommand from "./slash-command";
 import { InputRule } from "@tiptap/core";
+import { TldrawExtension, TldrawNode } from "./tldraw";
 
 export const TiptapExtensions = [
+  TldrawNode,
+  TldrawExtension,
   StarterKit.configure({
     bulletList: {
       HTMLAttributes: {
